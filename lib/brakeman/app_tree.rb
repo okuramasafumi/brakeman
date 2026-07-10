@@ -180,7 +180,7 @@ module Brakeman
         root_directory = "#{root_search_pattern}#{directory}"
         patterns = ["#{root_directory}/**/#{name}#{extensions}"]
 
-        Dir.glob("#{root_directory}/**/*", File::FNM_DOTMATCH).each do |path|
+        Dir.glob("#{root_directory}/**/*#{extensions}", File::FNM_DOTMATCH).each do |path|
           if File.symlink?(path) && File.directory?(path)
             symlink_target = File.readlink(path)
             if Pathname.new(symlink_target).relative?
